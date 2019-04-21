@@ -12,6 +12,7 @@
             <th>Role</th>
             <th>Status</th>
             <th>Created Time</th>
+            <th>Updated Time</th>
         </tr>
         </thead>
         <tbody>
@@ -20,7 +21,7 @@
                 <td>{{$user->id}}</td>
                 <td>
                     <img height="50" width="50" src="{{$user->image  ? $user->image->file : '/images/noimage.jpg'}}"></td>
-                <td>{{$user->name}}</td>
+                <td><a href="{{asset('/admin/users/'.$user->id.'/edit')}}">{{$user->name}}</a></td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->role->name}}</td>
                 <td>
@@ -29,6 +30,7 @@
                     </label>
                 </td>
                 <td>{{$user->created_at->diffForHumans()}}</td>
+                <td>{{$user->updated_at->diffForHumans()}}</td>
             </tr>
         @endforeach
         </tbody>
