@@ -30,7 +30,7 @@
                 <ul class="nav navbar-top-links navbar-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                            <i class="fa fa-user fa-fw"></i>{{Auth::user()->name}} <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -42,6 +42,7 @@
                             </li>
                         </ul>
                     </li>
+
                 </ul>
 
                 <div class="navbar-default sidebar" role="navigation">
@@ -62,7 +63,7 @@
                                 <a href="#"><i class="fa fa-wrench fa-fw"></i>Users<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li><a href="{{asset('admin/users')}}">All Users</a></li>
-                                    <li><a href="{{asset('/admin/users/create')}}">Create User</a></li>
+                                    <li><a href="{{'/admin/users/create'}}">Create User</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -154,7 +155,20 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header"></h1>
+
+                           <div style="margin-top: 10px;">
+                               @if(session('success'))
+                                   <div class="alert alert-success">
+                                       <p><strong>Success!</strong>{{session('success')}}</p>
+                                   </div>
+                               @endif
+                               @if(session('error'))
+                                   <div class="alert alert-danger">
+                                       <p><strong>Error!</strong>{{session('error')}}</p>
+                                   </div>
+                               @endif
+                           </div>
+                            <h1 class="page-header" style="margin-top: 20px"></h1>
                             @yield('content')
                         </div>
                     </div>
