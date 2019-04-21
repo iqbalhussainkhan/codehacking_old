@@ -23,7 +23,7 @@
                  {!! Form::textarea('body',null,['class' => 'form-control']) !!}
              </div>
              <div class="form-group">
-                 {!! Form::submit('App post',['class' => 'btn btn-primary']) !!}
+                 {!! Form::submit('Add post',['class' => 'btn btn-primary']) !!}
              </div>
      {!! Form::close() !!}
 
