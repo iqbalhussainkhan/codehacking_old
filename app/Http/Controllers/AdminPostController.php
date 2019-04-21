@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Requests\PostCreateRequest;
 use App\Image;
 use App\Post;
@@ -19,7 +20,7 @@ class AdminPostController extends Controller
      */
     public function index()
     {
-        $data = Post::all();
+        $data = Post::orderBy('id','desc')->get();
         return view('admin.posts.index',compact('data'));
     }
 
@@ -30,7 +31,8 @@ class AdminPostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::lists('name','id')->all();
+        return view('admin.posts.create',compact('categories'));
     }
 
     /**
@@ -50,10 +52,9 @@ class AdminPostController extends Controller
             $image = Image::create(['file' => $file_name]);
             $input['image_id'] = $image->id;
         }
-        $input['user_id'] = Auth::user()->id;
-
-        Post::create($input);
-        return redirect('/admin/posts');
+        $user  = Auth::user();
+        $user->post()->create($input);
+        return redirect('/admin/posts')->with('success','Post added successfully');
 
     }
 
