@@ -26,4 +26,5 @@ Route::group(['middleware' => 'is_admin'],function (){
         return view('/admin.index');
     });
     Route::resource('/admin/users','AdminUsersController');
+    Route::resource('/admin/posts','AdminPostController');
 });

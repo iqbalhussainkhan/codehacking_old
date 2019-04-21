@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <h1>Add User</h1>
-{{--     {!! Form::open(array('url' => 'AdminUsersController@store' , 'method' => 'post', 'files' => true))!!}--}}
+{{--     {!! Form::open(array('url' => 'AdminUsersController@store' , 'method' => 'posts', 'files' => true))!!}--}}
         {!! Form::open(array('action' => 'AdminUsersController@store', 'files' => true)) !!}
              <div class="form-group">
                  {!! Form::label('name', 'Name:') !!}
