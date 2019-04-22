@@ -25,7 +25,11 @@ Route::group(['middleware' => 'is_admin'],function (){
     Route::get('/admin',function (){
         return view('/admin.index');
     });
+    Route::get('/post/{id}','AdminPostController@post');
     Route::resource('/admin/users','AdminUsersController');
     Route::resource('/admin/posts','AdminPostController');
     Route::resource('/admin/categories','AdminCategoriesController');
+    Route::resource('/admin/media','AdminMediaController');
+    Route::resource('/post/comment/replies','CommentsRepliesController');
+    Route::resource('/posts/comments','PostCommentsController');
 });

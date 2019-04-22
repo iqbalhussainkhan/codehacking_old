@@ -12,6 +12,8 @@
         <link href="{{asset('css/libs.css')}}" rel="stylesheet">
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+        @yield('styles')
     </head>
 
     <body id="admin-page">
@@ -71,6 +73,7 @@
                                 <ul class="nav nav-second-level">
                                     <li><a href="{{asset('/admin/posts')}}">All Posts</a></li>
                                     <li><a href="{{asset('/admin/posts/create')}}">Create Post</a></li>
+                                    <li><a href="{{asset('/posts/comments')}}">Posts Comments</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -83,8 +86,8 @@
                             <li>
                                 <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="/media">All Media</a></li>
-                                    <li><a href="">Upload Media</a></li>
+                                    <li><a href="{{asset('/admin/media')}}">All Media</a></li>
+                                    <li><a href="{{asset('/admin/media/create')}}">Upload Media</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -156,18 +159,7 @@
                     <div class="row">
                         <div class="col-lg-12">
 
-                           <div style="margin-top: 10px;">
-                               @if(session('success'))
-                                   <div class="alert alert-success">
-                                       <p><strong>Success!</strong>{{session('success')}}</p>
-                                   </div>
-                               @endif
-                               @if(session('error'))
-                                   <div class="alert alert-danger">
-                                       <p><strong>Error!</strong>{{session('error')}}</p>
-                                   </div>
-                               @endif
-                           </div>
+                           @include('messages.flash_message')
                             <h1 class="page-header" style="margin-top: 20px"></h1>
                             @yield('content')
                         </div>

@@ -15,18 +15,22 @@
         </tr>
         </thead>
         <tbody>
-            @foreach($data as $post)
-                <tr>
-                    <td>{{$post->id}}</td>
-                    <td><img width="50" height="50" src="{{$post->image->file}}" alt=""></td>
-                    <td>{{$post->user->name}}</td>
-                    <td>{{$post->category->name}}</td>
-                    <td><a href="{{asset('/admin/posts/'.$post->id.'/edit')}}">{{$post->title}}</a></td>
-                    <td>{{str_limit($post->body,30)}}</td>
-                    <td>{{$post->created_at->diffforhumans()}}</td>
-                    <td>{{$post->updated_at->diffforhumans()}}</td>
-                </tr>
-            @endforeach
+            @if($data)
+                @foreach($data as $post)
+                    <tr>
+                        <td>{{$post->id}}</td>
+                        <td><img width="50" height="50" src="{{$post->image->file}}" alt=""></td>
+                        <td>{{$post->user->name}}</td>
+                        <td>{{$post->category->name}}</td>
+                        <td><a href="{{asset('/post/'.$post->id)}}">{{$post->title}}</a></td>
+                        <td>{{str_limit($post->body,30)}}</td>
+                        <td>{{$post->created_at->diffforhumans()}}</td>
+                        <td>{{$post->updated_at->diffforhumans()}}</td>
+                        <td><a href={{asset('/admin/posts/'.$post->id.'/edit')}}>Edit Post</a></td>
+                        <td><a href={{asset('/posts/comments/'.$post->id)}}>Post Comments</a></td>
+                    </tr>
+                @endforeach
+            @endif
         </tbody>
     </table>
 @endsection
