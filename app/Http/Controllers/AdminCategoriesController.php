@@ -39,41 +39,19 @@ class AdminCategoriesController extends Controller
     public function store(Request $request)
     {
         Category::create($request->all());
-        return redirect('/admin/categories');
+        return redirect('/admin/categories')->with('success',' Category Added ');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('admin.categories.edit',compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        Category::findOrFail($id)->update($request->all());
+        return redirect('/admin/categories')->with('success',' Category updated');
     }
 
     /**
@@ -84,6 +62,7 @@ class AdminCategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::findOrFail($id)->delete();
+        return redirect('/admin/categories')->with('success',' Deleted Successfully');
     }
 }

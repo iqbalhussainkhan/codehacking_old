@@ -31,7 +31,7 @@
             @foreach($categories as $categroy)
                 <tr>
                     <td>{{$categroy->id}}</td>
-                    <td>{{$categroy->name}}</td>
+                    <td><a href="{{asset('/admin/categories/'.$categroy->id.'/edit')}}">{{$categroy->name}}</a></td>
                     <td>{{$categroy->created_at ? $categroy->created_at->diffforhumans() : 'No date'}}</td>
                     <td>{{$categroy->upadated_at ? $categroy->updated_at->diffforhumans() : 'No date'}}</td>
                 </tr>
