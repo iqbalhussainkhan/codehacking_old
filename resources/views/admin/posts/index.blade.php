@@ -21,8 +21,8 @@
                     <td><img width="50" height="50" src="{{$post->image->file}}" alt=""></td>
                     <td>{{$post->user->name}}</td>
                     <td>{{$post->category->name}}</td>
-                    <td>{{$post->title}}</td>
-                    <td>{{$post->body}}</td>
+                    <td><a href="{{asset('/admin/posts/'.$post->id.'/edit')}}">{{$post->title}}</a></td>
+                    <td>{{str_limit($post->body,30)}}</td>
                     <td>{{$post->created_at->diffforhumans()}}</td>
                     <td>{{$post->updated_at->diffforhumans()}}</td>
                 </tr>
